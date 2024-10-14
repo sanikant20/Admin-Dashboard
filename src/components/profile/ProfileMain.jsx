@@ -22,7 +22,7 @@ const ProfileMain = () => {
     };
 
     const ChangePassword = () => {
-        navigate('/changepassword');
+        navigate('/profile/change-password');
     };
 
     return (

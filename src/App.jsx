@@ -19,6 +19,11 @@ import UserDetails from "./components/users/UserDetails";
 
 import OrdersList from "./components/orders/OrdersList";
 import OrderDetails from "./components/orders/OrderDetails";
+
+import ProfileMain from "./components/profile/ProfileMain";
+import ChangePassword from "./components/profile/ChangePassword";
+import ProfileEdit from "./components/profile/ProfileEdit";
+
 const App = () => {
   return (
     <Router>
@@ -154,6 +159,40 @@ const App = () => {
               <SidebarNavbar />
               <div className="flex-grow-1 p-4 overflow-auto">
                 <OrderDetails />
+              </div>
+            </div>
+          }
+        />
+
+        <Route
+          path="/profile"
+          element={
+            <div className="d-flex flex-column flex-lg-row vh-100">
+              <SidebarNavbar />
+              <div className="flex-grow-1 p-4 overflow-auto">
+                <ProfileMain />
+              </div>
+            </div>
+          }
+        />
+        <Route
+          path="/profile/edit"
+          element={
+            <div className="d-flex flex-column flex-lg-row vh-100">
+              <SidebarNavbar />
+              <div className="flex-grow-1 p-4 overflow-auto">
+                <ProfileEdit />
+              </div>
+            </div>
+          }
+        />
+        <Route
+          path="/profile/change-password"
+          element={
+            <div className="d-flex flex-column flex-lg-row vh-100">
+              <SidebarNavbar />
+              <div className="flex-grow-1 p-4 overflow-auto">
+                <ChangePassword />
               </div>
             </div>
           }
