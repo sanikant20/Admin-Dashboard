@@ -24,9 +24,10 @@ const UserDetails = () => {
 
     return (
         <div className="container p-4 shadow bg-dark text-white rounded-3">
-            <h1 className="mb-4">Users</h1>
+            <h1 className="mb-4">User Details</h1>
+            
             <div className="row justify-content-center align-items-center">
-                <Card style={{ width: '24rem' }}>
+                <Card className="col-12 col-md-8 col-lg-6">
                     <Card.Body>
                         <Image src={user.avatar} roundedCircle className="mb-3 d-block mx-auto" style={{ width: '100px', height: '100px' }} />
                         <h4 className="text-center mt-3">{user.fullname}</h4>

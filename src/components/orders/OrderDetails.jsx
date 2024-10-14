@@ -1,10 +1,10 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
-import { Card, ListGroup, Row, Col, Table } from 'react-bootstrap';
+import { useParams, useNavigate } from 'react-router-dom';
+import { Card, ListGroup, Row, Col, Table, Button } from 'react-bootstrap';
 
 const OrderDetails = () => {
     const { id } = useParams();
-
+    const navigate = useNavigate();
     // Sample data for orders (you might fetch this data from an API based on the order ID)
     const orders = [
         {
@@ -73,9 +73,14 @@ const OrderDetails = () => {
         return order.items.reduce((total, item) => total + (item.price * item.quantity), 0).toFixed(2);
     };
 
+    const goBack = () => {
+        navigate('/orders');
+    };
+
     return (
         <div className="container p-4 shadow bg-dark text-white rounded-3">
             <h1 className="mb-4">Order Details</h1>
+            
             <Card className="mb-4">
                 <Row className="g-3">
                     <Col md={6} className="d-flex flex-column justify-content-center">
@@ -137,7 +142,7 @@ const OrderDetails = () => {
                     </Table>
                 </Card.Body>
             </Card>
-
+            <Button variant="info" className="mb-4" onClick={goBack}>Back</Button>
         </div>
     );
 };

@@ -86,7 +86,7 @@ const GenresAdd = () => {
               </Row>
 
               <div className="d-flex justify-content-between">
-                <Button variant="warning" onClick={handleBack}>
+                <Button variant="info" onClick={handleBack}>
                   Back
                 </Button>
 

@@ -10,6 +10,7 @@ Currently, two official plugins are available:
 # Admin-Dashboard
 This project is an admin dashboard built using React, Vite, and Bootstrap. It contains the following features:
 
+- Responsive design
 - Login and registration components
 - Sidebar with navigation links
 - Dashboard with cards showing some data
@@ -17,6 +18,7 @@ This project is an admin dashboard built using React, Vite, and Bootstrap. It co
 - Genre component with CRUD operations (add, edit, delete)
 - User component with user details
 - Order component with order details and order bill
+- Profile component with profile details and password change
 
 # Installation
 To install, run the following command: `npm install` 

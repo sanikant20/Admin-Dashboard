@@ -167,9 +167,9 @@ const OrdersList = () => {
                                         </td>
                                         <td>{new Date(order.orderDate).toLocaleDateString()}</td>
                                         <td>
-                                            <Button onClick={() => handleViewOrder(order._id)}>
+                                            <Button variant='info' onClick={() => handleViewOrder(order._id)}>
                                                 <span>
-                                                    View
+                                                    View Details
                                                 </span>
                                             </Button>{' '}
                                         </td>
