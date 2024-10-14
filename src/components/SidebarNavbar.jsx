@@ -1,12 +1,16 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { Offcanvas, Navbar, Nav } from 'react-bootstrap';
+import { Link, useLocation } from 'react-router-dom';
+import { Offcanvas, Navbar } from 'react-bootstrap';
 
 const SidebarNavbar = () => {
   const [show, setShow] = useState(false);
+  const location = useLocation(); // Get current location
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  // Function to check if the link is active
+  const isActive = (path) => location.pathname === path ? 'active' : '';
 
   return (
     <>
@@ -31,29 +35,39 @@ const SidebarNavbar = () => {
         </h2>
         <hr />
         <ul className="nav flex-column font-weight-bold font-size-24">
-          <li className="nav-item">
-            <Link to="/" className="nav-link text-white">
+          <li className={`nav-item ${isActive("/")}`}>
+            <Link to="/" className={`nav-link text-white ${isActive("/")}`}>
               <i className="fas fa-tachometer-alt me-2"></i> Dashboard
             </Link>
           </li>
-          <li className="nav-item">
-            <Link to="/books" className="nav-link text-white">
+          <li className={`nav-item ${isActive("/books")}`}>
+            <Link to="/books" className={`nav-link text-white ${isActive("/books")}`}>
               <i className="fas fa-book me-2"></i> Books
             </Link>
           </li>
-          <li className="nav-item">
-            <Link to="/genres" className="nav-link text-white">
+          <li className={`nav-item ${isActive("/genres")}`}>
+            <Link to="/genres" className={`nav-link text-white ${isActive("/genres")}`}>
               <i className="fas fa-tags me-2"></i> Genres
             </Link>
           </li>
-          <li className="nav-item">
-            <Link to="/orders" className="nav-link text-white">
+          <li className={`nav-item ${isActive("/orders")}`}>
+            <Link to="/orders" className={`nav-link text-white ${isActive("/orders")}`}>
               <i className="fas fa-shopping-cart me-2"></i> Orders
             </Link>
           </li>
-          <li className="nav-item">
-            <Link to="/users" className="nav-link text-white">
+          <li className={`nav-item ${isActive("/users")}`}>
+            <Link to="/users" className={`nav-link text-white ${isActive("/users")}`}>
               <i className="fas fa-users me-2"></i> Users
+            </Link>
+          </li>
+          <li className={`nav-item ${isActive("/profile")}`}>
+            <Link to="/profile" className={`nav-link text-white ${isActive("/profile")}`}>
+              <i className="fas fa-user me-2"></i> Profile
+            </Link>
+          </li>
+          <li className={`nav-item ${isActive("/logout")}`}>
+            <Link to="/logout" className={`nav-link text-white ${isActive("/logout")}`}>
+              <i className="fas fa-sign-out-alt me-2"></i> Logout
             </Link>
           </li>
         </ul>
@@ -66,31 +80,42 @@ const SidebarNavbar = () => {
         </Offcanvas.Header>
         <Offcanvas.Body>
           <ul className="nav flex-column">
-            <li className="nav-item">
-              <Link to="/" className="nav-link text-white" onClick={handleClose}>
+            <li className={`nav-item ${isActive("/")}`}>
+              <Link to="/" className={`nav-link text-white ${isActive("/")}`} onClick={handleClose}>
                 <i className="fas fa-tachometer-alt me-2"></i> Dashboard
               </Link>
             </li>
-            <li className="nav-item">
-              <Link to="/books" className="nav-link text-white" onClick={handleClose}>
+            <li className={`nav-item ${isActive("/books")}`}>
+              <Link to="/books" className={`nav-link text-white ${isActive("/books")}`} onClick={handleClose}>
                 <i className="fas fa-book me-2"></i> Books
               </Link>
             </li>
-            <li className="nav-item">
-              <Link to="/genres" className="nav-link text-white" onClick={handleClose}>
+            <li className={`nav-item ${isActive("/genres")}`}>
+              <Link to="/genres" className={`nav-link text-white ${isActive("/genres")}`} onClick={handleClose}>
                 <i className="fas fa-tags me-2"></i> Genres
               </Link>
             </li>
-            <li className="nav-item">
-              <Link to="/orders" className="nav-link text-white" onClick={handleClose}>
+            <li className={`nav-item ${isActive("/orders")}`}>
+              <Link to="/orders" className={`nav-link text-white ${isActive("/orders")}`} onClick={handleClose}>
                 <i className="fas fa-shopping-cart me-2"></i> Orders
               </Link>
             </li>
-            <li className="nav-item">
-              <Link to="/users" className="nav-link text-white" onClick={handleClose}>
+            <li className={`nav-item ${isActive("/users")}`}>
+              <Link to="/users" className={`nav-link text-white ${isActive("/users")}`} onClick={handleClose}>
                 <i className="fas fa-users me-2"></i> Users
               </Link>
             </li>
+            
+            <li className={`nav-item ${isActive("/profile")}`}>
+            <Link to="/profile" className={`nav-link text-white ${isActive("/profile")}`} onClick={handleClose}>
+              <i className="fas fa-user me-2"></i> Profile
+            </Link>
+          </li>
+          <li className={`nav-item ${isActive("/logout")}`}>
+            <Link to="/logout" className={`nav-link text-white ${isActive("/logout")}`} onClick={handleClose}>
+              <i className="fas fa-sign-out-alt me-2"></i> Logout
+            </Link>
+          </li>
           </ul>
         </Offcanvas.Body>
       </Offcanvas>
