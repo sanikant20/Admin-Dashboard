@@ -16,6 +16,9 @@ import GenresEdit from "./components/geners/GenresEdit";
 
 import UserList from "./components/users/UserList";
 import UserDetails from "./components/users/UserDetails";
+
+import OrdersList from "./components/orders/OrdersList";
+import OrderDetails from "./components/orders/OrderDetails";
 const App = () => {
   return (
     <Router>
@@ -132,6 +135,29 @@ const App = () => {
           }
         />
 
+        {/* Routes for Orders with Sidebar */}
+        <Route
+          path="/orders"
+          element={
+            <div className="d-flex flex-column flex-lg-row vh-100">
+              <SidebarNavbar />
+              <div className="flex-grow-1 p-4 overflow-auto">
+                <OrdersList />
+              </div>
+            </div>
+          }
+        />
+        <Route
+          path="/orders/view/:id"
+          element={
+            <div className="d-flex flex-column flex-lg-row vh-100">
+              <SidebarNavbar />
+              <div className="flex-grow-1 p-4 overflow-auto">
+                <OrderDetails />
+              </div>
+            </div>
+          }
+        />
       </Routes>
     </Router>
   );
