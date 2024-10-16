@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
-import { Card, Button, Form, Alert } from 'react-bootstrap';
+import { Card, Button, Form, Alert, InputGroup } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 
 const ChangePassword = () => {
     const [oldPassword, setOldPassword] = useState('');
+    const [showOldPassword, setShowOldPassword] = useState(false);
     const [newPassword, setNewPassword] = useState('');
+    const [showNewPassword, setShowNewPassword] = useState(false);
     const [confirmPassword, setConfirmPassword] = useState('');
+    const [showConfirmPassword, setShowConfirmPassword] = useState(false);
     const [error, setError] = useState('');
     const [success, setSuccess] = useState('');
     const navigate = useNavigate();
@@ -55,37 +58,62 @@ const ChangePassword = () => {
                     {error && <Alert variant="danger">{error}</Alert>}
                     {success && <Alert variant="success">{success}</Alert>}
                     <Form onSubmit={handleChangePassword}>
+
                         <Form.Group controlId="formOldPassword" className="mb-3">
                             <Form.Label>Old Password</Form.Label>
-                            <Form.Control
-                                type="password"
-                                placeholder="Enter your old password"
-                                value={oldPassword}
-                                onChange={(e) => setOldPassword(e.target.value)}
-                                required
-                            />
+                            <InputGroup>
+                                <Form.Control
+                                    type={showOldPassword ? 'text' : 'password'}
+                                    placeholder="Enter your old password"
+                                    value={oldPassword}
+                                    onChange={(e) => setOldPassword(e.target.value)}
+                                    required
+                                />
+                                <Button
+                                    variant="outline-secondary"
+                                    onClick={() => setShowOldPassword(!showOldPassword)}
+                                >
+                                    <i className={`fas ${showOldPassword ? 'fa-eye-slash' : 'fa-eye'}`}></i>
+                                </Button>
+                            </InputGroup>
                         </Form.Group>
 
                         <Form.Group controlId="formNewPassword" className="mb-3">
                             <Form.Label>New Password</Form.Label>
+                            <InputGroup>
                             <Form.Control
-                                type="password"
+                                type={showNewPassword ? 'text' : 'password'}
                                 placeholder="Enter your new password"
                                 value={newPassword}
                                 onChange={(e) => setNewPassword(e.target.value)}
                                 required
                             />
+                            <Button
+                                variant="outline-secondary"
+                                onClick={() => setShowNewPassword(!showNewPassword)}
+                            >
+                                <i className={`fas ${showNewPassword ? 'fa-eye-slash' : 'fa-eye'}`}></i>
+                            </Button>
+                            </InputGroup>
                         </Form.Group>
 
                         <Form.Group controlId="formConfirmPassword" className="mb-3">
                             <Form.Label>Confirm New Password</Form.Label>
+                            <InputGroup>
                             <Form.Control
-                                type="password"
+                                type={showConfirmPassword ? 'text' : 'password'}
                                 placeholder="Confirm your new password"
                                 value={confirmPassword}
                                 onChange={(e) => setConfirmPassword(e.target.value)}
                                 required
                             />
+                            <Button
+                                variant="outline-secondary"
+                                onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                            >
+                               <i className={`fas ${showConfirmPassword ? 'fa-eye-slash' : 'fa-eye'}`}></i>
+                            </Button>
+                            </InputGroup>
                         </Form.Group>
 
                         <div className="d-flex justify-content-between align-items-center mt-4">
