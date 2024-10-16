@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Offcanvas, Navbar } from 'react-bootstrap';
 
 const SidebarNavbar = () => {
   const [show, setShow] = useState(false);
   const location = useLocation(); // Get current location
+  const navigate = useNavigate();
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -12,6 +13,12 @@ const SidebarNavbar = () => {
   // Function to check if the link is active
   const isActive = (path) => location.pathname === path ? 'active' : '';
 
+  const handleLogout = () => {
+    // Perform logout logic here
+    console.log('Logout clicked');
+    localStorage.removeItem('token');
+    navigate('/login');
+  };
   return (
     <>
       {/* Navbar for small screens */}
@@ -65,8 +72,8 @@ const SidebarNavbar = () => {
               <i className="fas fa-user me-2"></i> Profile
             </Link>
           </li>
-          <li className={`nav-item ${isActive("/logout")}`}>
-            <Link to="/logout" className={`nav-link text-white ${isActive("/logout")}`}>
+          <li className={`nav-item `} onClick={handleLogout}>
+            <Link className={`nav-link text-white`}>
               <i className="fas fa-sign-out-alt me-2"></i> Logout
             </Link>
           </li>
@@ -105,17 +112,17 @@ const SidebarNavbar = () => {
                 <i className="fas fa-users me-2"></i> Users
               </Link>
             </li>
-            
+
             <li className={`nav-item ${isActive("/profile")}`}>
-            <Link to="/profile" className={`nav-link text-white ${isActive("/profile")}`} onClick={handleClose}>
-              <i className="fas fa-user me-2"></i> Profile
-            </Link>
-          </li>
-          <li className={`nav-item ${isActive("/logout")}`}>
-            <Link to="/logout" className={`nav-link text-white ${isActive("/logout")}`} onClick={handleClose}>
-              <i className="fas fa-sign-out-alt me-2"></i> Logout
-            </Link>
-          </li>
+              <Link to="/profile" className={`nav-link text-white ${isActive("/profile")}`} onClick={handleClose}>
+                <i className="fas fa-user me-2"></i> Profile
+              </Link>
+            </li>
+            <li className={`nav-item `} onClick={handleLogout}>
+              <Link className={`nav-link text-white `} >
+                <i className="fas fa-sign-out-alt me-2"></i> Logout
+              </Link>
+            </li>
           </ul>
         </Offcanvas.Body>
       </Offcanvas>
