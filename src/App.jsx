@@ -3,7 +3,9 @@ import PageNotFound from "./components/PageNotFound";
 import Login from "./auth/Login";
 import Register from "./auth/Register";
 
-import SidebarNavbar from "./components/SidebarNavbar";
+import Layout from "./auth/Layout";
+import PrivateRoute from "./auth/PrivateRoute";
+
 import Dashboard from "./components/dashboard/DashboardCard";
 
 import BookList from "./components/books/BookList";
@@ -27,176 +29,39 @@ import ProfileEdit from "./components/profile/ProfileEdit";
 const App = () => {
   return (
     <Router>
-      {/* Routes for login and register (without Sidebar) */}
       <Routes>
-        <Route path="*" element={<PageNotFound />} />
-
+        {/* Public routes */}
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="*" element={<PageNotFound />} />
 
-        {/* Routes for Dashboard with Sidebar */}
-        <Route
-          path="/"
-          element={
-            <div className="d-flex flex-column flex-lg-row vh-100">
-              <SidebarNavbar />
-              <div className="flex-grow-1 p-4 overflow-auto">
-                <Dashboard />
-              </div>
-            </div>
-          }
-        />
+        {/* Protected routes with layout */}
+        <Route element={<PrivateRoute><Layout /></PrivateRoute>}>
+          <Route path="/" element={<Dashboard />} />
 
-        {/* Routes for Books with Sidebar */}
-        <Route
-          path="/books"
-          element={
-            <div className="d-flex flex-column flex-lg-row vh-100">
-              <SidebarNavbar />
-              <div className="flex-grow-1 p-4 overflow-auto">
-                <BookList />
-              </div>
-            </div>
-          }
-        />
-        <Route
-          path="/books/add"
-          element={
-            <div className="d-flex flex-column flex-lg-row vh-100">
-              <SidebarNavbar />
-              <div className="flex-grow-1 p-4 overflow-auto">
-                <BookAdd />
-              </div>
-            </div>
-          }
-        />
-        <Route
-          path="/books/edit/:id"
-          element={
-            <div className="d-flex flex-column flex-lg-row vh-100">
-              <SidebarNavbar />
-              <div className="flex-grow-1 p-4 overflow-auto">
-                <BookEdit />
-              </div>
-            </div>
-          }
-        />
+          {/* Book routes */}
+          <Route path="/books" element={<BookList />} />
+          <Route path="/books/add" element={<BookAdd />} />
+          <Route path="/books/edit/:id" element={<BookEdit />} />
 
-        {/* Routes for Genres with Sidebar */}
-        <Route
-          path="/genres"
-          element={
-            <div className="d-flex flex-column flex-lg-row vh-100">
-              <SidebarNavbar />
-              <div className="flex-grow-1 p-4 overflow-auto">
-                <GenresList />
-              </div>
-            </div>
-          }
-        />
-        <Route
-          path="/genres/add"
-          element={
-            <div className="d-flex flex-column flex-lg-row vh-100">
-              <SidebarNavbar />
-              <div className="flex-grow-1 p-4 overflow-auto">
-                <GenresAdd />
-              </div>
-            </div>
-          }
-        />
-        <Route
-          path="/genres/edit/:id"
-          element={
-            <div className="d-flex flex-column flex-lg-row vh-100">
-              <SidebarNavbar />
-              <div className="flex-grow-1 p-4 overflow-auto">
-                <GenresEdit />
-              </div>
-            </div>
-          }
-        />
+          {/* Genres routes */}
+          <Route path="/genres" element={<GenresList />} />
+          <Route path="/genres/add" element={<GenresAdd />} />
+          <Route path="/genres/edit/:id" element={<GenresEdit />} />
 
-        {/* Routes for Users */}
-        <Route path="/users"
-          element={
-            <div className="d-flex flex-column flex-lg-row vh-100">
-              <SidebarNavbar />
-              <div className="flex-grow-1 p-4 overflow-auto">
-                <UserList />
-              </div>
-            </div>
-          }
-        />
-        <Route
-          path="/users/details/:id"
-          element={
-            <div className="d-flex flex-column flex-lg-row vh-100">
-              <SidebarNavbar />
-              <div className="flex-grow-1 p-4 overflow-auto">
-                <UserDetails />
-              </div>
-            </div>
-          }
-        />
+          {/* Users routes */}
+          <Route path="/users" element={<UserList />} />
+          <Route path="/users/details/:id" element={<UserDetails />} />
 
-        {/* Routes for Orders with Sidebar */}
-        <Route
-          path="/orders"
-          element={
-            <div className="d-flex flex-column flex-lg-row vh-100">
-              <SidebarNavbar />
-              <div className="flex-grow-1 p-4 overflow-auto">
-                <OrdersList />
-              </div>
-            </div>
-          }
-        />
-        <Route
-          path="/orders/view/:id"
-          element={
-            <div className="d-flex flex-column flex-lg-row vh-100">
-              <SidebarNavbar />
-              <div className="flex-grow-1 p-4 overflow-auto">
-                <OrderDetails />
-              </div>
-            </div>
-          }
-        />
+          {/* Orders routes */}
+          <Route path="/orders" element={<OrdersList />} />
+          <Route path="/orders/view/:id" element={<OrderDetails />} />
 
-        <Route
-          path="/profile"
-          element={
-            <div className="d-flex flex-column flex-lg-row vh-100">
-              <SidebarNavbar />
-              <div className="flex-grow-1 p-4 overflow-auto">
-                <ProfileMain />
-              </div>
-            </div>
-          }
-        />
-        <Route
-          path="/profile/edit"
-          element={
-            <div className="d-flex flex-column flex-lg-row vh-100">
-              <SidebarNavbar />
-              <div className="flex-grow-1 p-4 overflow-auto">
-                <ProfileEdit />
-              </div>
-            </div>
-          }
-        />
-        <Route
-          path="/profile/change-password"
-          element={
-            <div className="d-flex flex-column flex-lg-row vh-100">
-              <SidebarNavbar />
-              <div className="flex-grow-1 p-4 overflow-auto">
-                <ChangePassword />
-              </div>
-            </div>
-          }
-        />
+          {/* Profile routes */}
+          <Route path="/profile" element={<ProfileMain />} />
+          <Route path="/profile/edit" element={<ProfileEdit />} />
+          <Route path="/profile/change-password" element={<ChangePassword />} />
+        </Route>
       </Routes>
     </Router>
   );
