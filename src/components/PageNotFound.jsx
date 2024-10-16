@@ -10,7 +10,7 @@ const PageNotFound = () => {
     };
 
     return (
-        <Container className="text-center mt-5 p-5 shadow bg-light">
+        <Container className="text-center mt-5 p-5 rounded-3 shadow-lg bg-light">
             <div className="align-items-center text-center">
                 <h1 className="mb-4">Booksmandala</h1>
             </div>
